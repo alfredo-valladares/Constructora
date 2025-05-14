@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructora Elite - Construcciones de Calidad</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #E74C3C;
+            --secondary-color: #2C3E50;
+            --accent-color: #F39C12;
+            --light-bg: #ECF0F1;
+            --dark-text: #2C3E50;
+            --light-text: #ECF0F1;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            color: var(--dark-text);
+            padding-bottom: 80px; /* Espacio para el menú inferior */
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        /* Efecto Parallax */
+        .parallax {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .parallax::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+        }
+        
+        /* Secciones con parallax */
+        .section-parallax-1 {
+            background-image: url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            min-height: 60vh;
+        }
+        
+        .section-parallax-2 {
+            background-image: url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            min-height: 60vh;
+        }
+        
+        /* Botones */
+        .cta-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.6);
+        }
+        
+        /* Menú inferior */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(44, 62, 80, 0.98);
+            padding: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+            transform: translateY(100px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .bottom-nav.show {
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            color: var(--light-text) !important;
+            margin: 0 1rem;
+            position: relative;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link i {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-3px);
+        }
+        
+        /* Tarjetas de servicios */
+        .service-card {
+            border-radius: 15px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            height: 100%;
+            border: none;
+        }
+        a {
+      text-decoration: none;
+    }
+        
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img {
+            transform: scale(1.1);
+        }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            z-index: 1000;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulse 2s infinite;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-float i {
+            font-size: 1.8rem;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Formulario */
+        .form-control-custom {
+            border-radius: 15px;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .form-control-custom:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(231, 76, 60, 0.25);
+        }
+        
+        /* Secciones */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+        }
+        
+        /* Proyectos */
+        .project-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .project-card img {
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+        }
+        
+        /* Testimonios */
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            margin-top: 3rem;
+            transition: all 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .parallax {
+                background-attachment: scroll;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .bottom-nav {
+                padding: 0.5rem;
+            }
+            
+            .nav-link {
+                margin: 0 0.5rem;
+                font-size: 0.7rem;
+            }
+            
+            .nav-link i {
+                font-size: 1.2rem;
+            }
+            
+            .whatsapp-float {
+                bottom: 80px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .whatsapp-float i {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="parallax hero">
+        <div class="parallax-content">
+            <div class="container text-center text-white" data-aos="fade-up" data-aos-delay="300">
+                <h1 class="display-3 mb-4 animate__animated animate__fadeInDown">Construimos el Futuro</h1>
+                <p class="lead mb-5 fs-3 animate__animated animate__fadeIn animate__delay-1s">Más de 20 años creando espacios excepcionales</p>
+                <button class="cta-button animate__animated animate__fadeInUp animate__delay-1s" onclick="location.href='#contacto'">Solicitar Presupuesto</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section class="section bg-light" id="nosotros">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <img src="https://i0.wp.com/www.segusa.com.mx/wp-content/uploads/2023/07/proteccion-personal-constuccion.jpg" 
+                         class="img-fluid rounded-3 shadow-lg animate__animated animate__zoomIn" alt="Equipo de construcción">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h2 class="section-title">Nuestra Historia</h2>
+                    <p class="lead">Constructora Elite nació en 2003 con la visión de transformar el sector de la construcción con innovación y calidad.</p>
+                    <p>Somos una empresa especializada en construcción residencial, comercial e industrial, comprometida con la excelencia, la innovación y la satisfacción total de nuestros clientes.</p>
+                    <p>Nuestro equipo de más de 150 profesionales altamente capacitados garantiza resultados excepcionales en cada proyecto.</p>
+                    
+                    <div class="row mt-5">
+                        <div class="col-6 col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="text-center">
+                                <div class="display-4 fw-bold text-primary">20+</div>
+                                <div>Años de experiencia</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="text-center">
+                                <div class="display-4 fw-bold text-primary">350+</div>
+                                <div>Proyectos completados</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="text-center">
+                                <div class="display-4 fw-bold text-primary">50+</div>
+                                <div>Clientes satisfechos</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                            <div class="text-center">
+                                <div class="display-4 fw-bold text-primary">15</div>
+                                <div>Premios obtenidos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Parallax 1 -->
+    <section class="parallax section-parallax-1 d-flex align-items-center">
+        <div class="parallax-content">
+            <div class="container text-white text-center" data-aos="zoom-in">
+                <h2 class="display-4 mb-4">Calidad que Perdura</h2>
+                <p class="lead fs-3 mb-5">Materiales premium y técnicas de vanguardia</p>
+                <button class="cta-button" onclick="location.href='#servicios'">Nuestros Servicios</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section class="section" id="servicios">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Nuestros Servicios</h2>
+                <p class="lead">Soluciones integrales para cada etapa de tu proyecto</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card h-100">
+                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             class="service-img" alt="Construcción residencial">
+                        <div class="p-4">
+                            <h4 class="mb-3">Construcción Residencial</h4>
+                            <p>Desde casas unifamiliares hasta complejos residenciales de lujo, con los más altos estándares de calidad.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Diseño personalizado</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Materiales de primera</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Garantía extendida</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card h-100">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             class="service-img" alt="Construcción comercial">
+                        <div class="p-4">
+                            <h4 class="mb-3">Construcción Comercial</h4>
+                            <p>Edificios de oficinas, locales comerciales y espacios corporativos diseñados para potenciar tu negocio.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Optimización de espacios</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Cumplimiento normativo</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Entregas puntuales</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card h-100">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             class="service-img" alt="Remodelaciones">
+                        <div class="p-4">
+                            <h4 class="mb-3">Remodelaciones Integrales</h4>
+                            <p>Transformamos tus espacios existentes con soluciones innovadoras y diseños modernos.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Minimizamos molestias</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Presupuestos claros</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Soluciones a medida</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Parallax 2 -->
+    <section class="parallax section-parallax-2 d-flex align-items-center">
+        <div class="parallax-content">
+            <div class="container text-white text-center" data-aos="zoom-in">
+                <h2 class="display-4 mb-4">Innovación en Cada Detalle</h2>
+                <p class="lead fs-3 mb-5">Tecnología de punta para resultados excepcionales</p>
+                <button class="cta-button" onclick="location.href='#proyectos'">Ver Proyectos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section class="section bg-light" id="proyectos">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Proyectos Destacados</h2>
+                <p class="lead">Algunos de nuestros trabajos más recientes</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             class="img-fluid w-100" alt="Residencial Las Lomas">
+                        <div class="project-overlay">
+                            <h5>Residencial Las Lomas</h5>
+                            <p class="mb-0">24 casas de lujo con acabados premium</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             class="img-fluid w-100" alt="Torre Corporativa">
+                        <div class="project-overlay">
+                            <h5>Torre Corporativa Financiera</h5>
+                            <p class="mb-0">18 pisos de oficinas clase A</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             class="img-fluid w-100" alt="Centro Comercial">
+                        <div class="project-overlay">
+                            <h5>Centro Comercial Vistahermosa</h5>
+                            <p class="mb-0">45,000 m2 de área rentable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5" data-aos="fade-up">
+                <button class="cta-button">Ver Todos los Proyectos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="section" id="testimonios">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+                <p class="lead">Testimonios reales de quienes han confiado en nosotros</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card text-center">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" class="testimonial-img">
+                        <div class="mt-4">
+                            <h5 class="mb-1">María González</h5>
+                            <small class="text-muted">Residencial Las Lomas</small>
+                            <p class="mt-3">"Quedamos encantados con nuestra nueva casa. El equipo fue profesional en todo momento y cumplieron con los plazos prometidos."</p>
+                            <div class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card text-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="testimonial-img">
+                        <div class="mt-4">
+                            <h5 class="mb-1">Carlos Mendoza</h5>
+                            <small class="text-muted">Torre Corporativa</small>
+                            <p class="mt-3">"La mejor decisión que tomamos fue contratar a Constructora Elite. Entregaron antes de tiempo y con calidad superior a lo esperado."</p>
+                            <div class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card text-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" class="testimonial-img">
+                        <div class="mt-4">
+                            <h5 class="mb-1">Laura Jiménez</h5>
+                            <small class="text-muted">Remodelación Integral</small>
+                            <p class="mt-3">"Transformaron completamente nuestro espacio de trabajo. El diseño propuesto superó nuestras expectativas y el proceso fue muy transparente."</p>
+                            <div class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="section bg-secondary text-white" id="contacto">
+        <div class="container" data-aos="fade-up">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center mb-5">
+                        <h2 class="section-title text-white">¿Listo para comenzar tu proyecto?</h2>
+                        <p class="lead">Contáctanos hoy mismo para una consulta gratuita</p>
+                    </div>
+                    <form id="contactForm" class="row g-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-custom" 
+                                   placeholder="Nombre completo" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control form-control-custom" 
+                                   placeholder="Correo electrónico" required>
+                        </div>
+                        <div class="col-12">
+                            <select class="form-control form-control-custom" required>
+                                <option value="">¿Qué tipo de proyecto necesitas?</option>
+                                <option>Residencial</option>
+                                <option>Comercial</option>
+                                <option>Industrial</option>
+                                <option>Remodelación</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" class="cta-button px-5">Enviar Consulta</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-5">
+                        <p class="mb-2">O contáctanos directamente:</p>
+                        <a href="tel:+527353590951" class="text-white fs-4 d-block mb-2"><i class="fas fa-phone-alt me-2"></i>+52 735 359 0951</a>
+                        <a href="mailto:contacto@constructoraelite.com" class="text-white fs-4"><i class="fas fa-envelope me-2"></i>contacto@constructoraelite.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5217353590951?text=Hola,%20estoy%20interesado%20en%20sus%20servicios%20de%20construcción" 
+       class="whatsapp-float" target="_blank" data-aos="zoom-in" data-aos-delay="1000">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="d-flex justify-content-around">
+            <a class="nav-link text-center" href="#nosotros">
+                <i class="fas fa-building"></i>
+                <span>Nosotros</span>
+            </a>
+            <a class="nav-link text-center" href="#servicios">
+                <i class="fas fa-tools"></i>
+                <span>Servicios</span>
+            </a>
+            <a class="nav-link text-center" href="#proyectos">
+                <i class="fas fa-home"></i>
+                <span>Proyectos</span>
+            </a>
+            <a class="nav-link text-center" href="#contacto">
+                <i class="fas fa-phone-alt"></i>
+                <span>Contacto</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Inicializar animaciones
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        $(document).ready(function(){
+            // Mostrar menú inferior al hacer scroll
+            $(window).scroll(function(){
+                if($(this).scrollTop() > 100) {
+                    $('.bottom-nav').addClass('show');
+                } else {
+                    $('.bottom-nav').removeClass('show');
+                }
+            });
+            
+            // Enviar formulario a WhatsApp
+            $('#contactForm').submit(function(e){
+                e.preventDefault();
+                const nombre = $('input[type="text"]').val();
+                const proyecto = $('select').val();
+                const mensaje = `Hola, soy ${nombre} y necesito información sobre un proyecto ${proyecto}. Por favor envíenme más detalles.`;
+                window.open(`https://wa.me/5217353590951?text=${encodeURIComponent(mensaje)}`);
+            });
+            
+            // Smooth scrolling para navegación
+            $('a[href*="#"]').on('click', function(e) {
+                e.preventDefault();
+                $('html, body').animate(
+                    {
+                        scrollTop: $($(this).attr('href')).offset().top - 70,
+                    },
+                    800,
+                    'easeInOutExpo'
+                );
+            });
+            
+            // Desactivar parallax en dispositivos móviles
+            if ($(window).width() < 768) {
+                $('.parallax').css('background-attachment', 'scroll');
+            }
+        });
+    </script>
+</body>
+</html>
